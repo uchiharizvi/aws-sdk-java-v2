@@ -114,7 +114,7 @@
         <rxjava.version>2.2.21</rxjava.version>
         <commons-codec.verion>1.10</commons-codec.verion>
         <jmh.version>1.29</jmh.version>
-        <awscrt.version>0.15.15</awscrt.version>
+        <awscrt.version>0.15.20</awscrt.version>
 
         <!--Test dependencies -->
         <junit5.version>5.8.1</junit5.version>
@@ -761,13 +761,13 @@
                                     <goal>verify</goal>
                                 </goals>
                                 <configuration>
-                                    <argLine>-Dio.netty.leakDetection.level=advanced</argLine>
+                                    <argLine>@{argLine} -Dio.netty.leakDetection.level=advanced -Xmx2048m</argLine>
                                     <includes>
                                         <include>**/*StabilityTest.java</include>
                                         <include>**/*StabilityTests.java</include>
                                     </includes>
                                     <trimStackTrace>false</trimStackTrace>
-                                    <rerunFailingTestsCount>2</rerunFailingTestsCount>
+<!--                                    <rerunFailingTestsCount>2</rerunFailingTestsCount>-->
                                 </configuration>
                             </execution>
                         </executions>

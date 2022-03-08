@@ -51,7 +51,7 @@ public class S3WithCrtAsyncHttpClientStabilityTest extends S3BaseStabilityTest {
     @Override
     protected String getTestBucketName() { return bucketName; }
 
-    @RetryableTest(maxRetries = 3, retryableException = StabilityTestsRetryableException.class)
+    @RetryableTest(maxRetries = 1, retryableException = StabilityTestsRetryableException.class)
     public void getBucketAcl_lowTpsLongInterval_Crt() {
         doGetBucketAcl_lowTpsLongInterval();
     }

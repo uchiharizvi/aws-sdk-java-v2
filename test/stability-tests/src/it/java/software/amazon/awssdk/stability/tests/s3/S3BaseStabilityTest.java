@@ -29,6 +29,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import software.amazon.awssdk.core.async.AsyncRequestBody;
 import software.amazon.awssdk.core.async.AsyncResponseTransformer;
 import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.crt.Log;
 import software.amazon.awssdk.http.apache.ApacheHttpClient;
 import software.amazon.awssdk.services.s3.S3AsyncClient;
 import software.amazon.awssdk.services.s3.S3Client;
@@ -53,6 +54,8 @@ public abstract class S3BaseStabilityTest extends AwsTestBase {
     private final S3AsyncClient testClient;
 
     static {
+        System.setProperty("aws.crt.debugnative", "true");
+        Log.initLoggingToFile(Log.LogLevel.Info, "./crt.log");
         s3ApacheClient = S3Client.builder()
                                  .httpClientBuilder(ApacheHttpClient.builder()
                                                                     .maxConnections(CONCURRENCY))
@@ -65,14 +68,14 @@ public abstract class S3BaseStabilityTest extends AwsTestBase {
         this.testClient = testClient;
     }
 
-    @RetryableTest(maxRetries = 3, retryableException = StabilityTestsRetryableException.class)
+    @RetryableTest(maxRetries = 1, retryableException = StabilityTestsRetryableException.class)
     public void largeObject_put_get_usingFile() {
         String md5Upload = uploadLargeObjectFromFile();
         String md5Download = downloadLargeObjectToFile();
         assertThat(md5Upload).isEqualTo(md5Download);
     }
 
-    @RetryableTest(maxRetries = 3, retryableException = StabilityTestsRetryableException.class)
+    @RetryableTest(maxRetries = 1, retryableException = StabilityTestsRetryableException.class)
     public void putObject_getObject_highConcurrency() {
         putObject();
         getObject();
