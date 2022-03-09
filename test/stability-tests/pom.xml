@@ -115,7 +115,8 @@
             <groupId>software.amazon.awssdk.crt</groupId>
             <artifactId>aws-crt</artifactId>
             <version>${awscrt.version}</version>
-            <scope>test</scope>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/it/resources/right_before_cm_change.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
