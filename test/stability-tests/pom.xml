@@ -116,7 +116,7 @@
             <artifactId>aws-crt</artifactId>
             <version>${awscrt.version}</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/src/it/resources/includes_cm_change.jar</systemPath>
+            <systemPath>${project.basedir}/src/it/resources/aws-crt-1.0.0-SNAPSHOT.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
