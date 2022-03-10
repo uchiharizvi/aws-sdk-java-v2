@@ -181,8 +181,8 @@ public final class AwsCrtAsyncHttpClient implements SdkAsyncHttpClient {
                 .withMaxConnections(maxConnectionsPerEndpoint)
                 .withManualWindowManagement(true)
                 .withProxyOptions(proxyOptions)
-                .withMonitoringOptions(monitoringOptions)
-                .withMaxConnectionIdleInMilliseconds(0);
+                .withMonitoringOptions(monitoringOptions);
+                //.withMaxConnectionIdleInMilliseconds(0);
 
         return HttpClientConnectionManager.create(options);
     }
